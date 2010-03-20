@@ -104,6 +104,11 @@ describe UsersController do
         post :create, :user => @attr
       end
       
+      it "should sign the user in" do
+        post :create, :user => @attr
+        controller.should be_signed_in
+      end
+      
       it "should redirect to the user show page" do
         post :create, :user => @attr
         response.should redirect_to(user_url(@user))
